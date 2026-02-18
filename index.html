@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Star Sports 2 Hindi - Private</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+:root { --p: #00ff6a; --b: #000000; }
+*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+body{ margin:0; font-family: -apple-system, sans-serif; background: var(--b); color: #fff; overflow: hidden; user-select: none; }
+.main-ui { display: flex; flex-direction: column; height: 100vh; padding: 10px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5px; }
+.live-tag { background: #ff0000; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+.video-container { width: 100%; position: relative; padding-top: 56.25%; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+#stream-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.pop-overlay { display: none; } 
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<div class="main-ui">
+  <div class="header">
+    <div style="font-weight:bold; font-size:18px;">STAR <span style="color:var(--p)">SPORTS 2</span></div>
+    <div class="live-tag">LIVE</div>
+  </div>
+
+  <div class="video-container" id="viewport">
+    </div>
+</div>
+
+<script>
+// Encoded stream source
+const _0xK = "aHR0cHM6Ly9hbGxyb3VuZGVyLWtpbmcucGFnZXMuZGV2L2NoYW5uZWwvc3Rhci1zcG9ydHMtMi1oaW5kaQ==";
+
+window.onload = function() {
+    const now = new Date();
+    // Set to March 9, 2026, at 06:00:00
+    const expiry = new Date(2026, 2, 9, 6, 0, 0);
+
+    // If current time is past expiry, do nothing (blank player)
+    if (now >= expiry) {
+        return;
+    }
+
+    const src = atob(_0xK);
+    const viewport = document.getElementById('viewport');
+    
+    viewport.innerHTML = `
+        <iframe 
+            id="stream-player"
+            src="${src}" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            sandbox="allow-scripts allow-same-origin allow-forms"
+            allowfullscreen="true" 
+            referrerpolicy="no-referrer">
+        </iframe>
+    `;
+};
+
+// Anti-Inspect Elements
+document.onkeydown = (e) => {
+    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
+};
+</script>
+
+</body>
+</html>
