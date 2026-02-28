@@ -2,66 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Star Sports 1 Hindi</title>
+<title>Live Stream</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
-:root { --p: #00ff6a; --b: #000000; }
+:root { --p: #00ff6a; --b: #0a0a0a; }
 *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-body{ margin:0; font-family: -apple-system, sans-serif; background: var(--b); color: #fff; overflow: hidden; user-select: none; }
 
-.main-ui { display: flex; flex-direction: column; height: 100vh; padding: 10px; }
-.header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5px; margin-bottom: 5px; }
-.live-tag { background: #ff0000; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+body { 
+    margin: 0; 
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+    background: var(--b); 
+    color: #fff; 
+    overflow: hidden; 
+    user-select: none; 
+}
+
+.main-ui { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; /* Centers player vertically if needed */
+    height: 100vh; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 15px; 
+}
 
 .video-container { 
     width: 100%; 
     position: relative; 
     padding-top: 56.25%; 
     background: #000; 
-    border-radius: 8px; 
+    border-radius: 12px; 
     overflow: hidden; 
     border: 1px solid rgba(255,255,255,0.1); 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
-#stream-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+#stream-player { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+}
 </style>
 </head>
 
 <body oncontextmenu="return false">
 
 <div class="main-ui">
-  <div class="header">
-    <div style="font-weight:bold; font-size:18px;">
-        STAR <span style="color:var(--p)">SPORTS 1 HINDI</span>
-    </div>
-    <div class="live-tag">LIVE</div>
-  </div>
-
   <div class="video-container" id="viewport">
-    </div>
+      </div>
 </div>
 
 <script>
-// Encoded Star Sports 1 Hindi source
-const _0xH1 = "aHR0cHM6Ly9hbGxyb3VuZGVyc2QucGFnZXMuZGV2L2NoYW5uZWwvc3Rhci1zcG9ydHMtMS1oaW5kaQ==";
+const _0xS1 = "SHR0cHM6Ly9qaW9nby5wYWdlcy5kZXYvP2lkPTE5ODQ=";
 
 window.onload = function() {
     const now = new Date();
-    // Expiry: March 9, 2026, 06:00 AM
     const expiry = new Date(2026, 2, 9, 6, 0, 0);
 
     if (now >= expiry) {
+        document.getElementById('viewport').innerHTML = "<div style='text-align:center;padding-top:20px;'>Stream Link Expired</div>";
         return;
     }
 
-    const src = atob(_0xH1);
+    const src = atob(_0xS1);
     const viewport = document.getElementById('viewport');
     
     viewport.innerHTML = `
         <iframe 
             id="stream-player"
             src="${src}" 
-            allow="autoplay; encrypted-media; fullscreen" 
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
             sandbox="allow-scripts allow-same-origin allow-forms"
             allowfullscreen="true" 
             referrerpolicy="no-referrer">
@@ -69,7 +84,6 @@ window.onload = function() {
     `;
 };
 
-// Anti-Inspect
 document.onkeydown = (e) => {
     if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
 };
