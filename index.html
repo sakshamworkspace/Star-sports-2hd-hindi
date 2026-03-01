@@ -21,7 +21,7 @@ body {
 .main-ui { 
     display: flex; 
     flex-direction: column; 
-    justify-content: center; /* Centers player vertically if needed */
+    justify-content: center;
     height: 100vh; 
     max-width: 900px; 
     margin: 0 auto; 
@@ -47,6 +47,17 @@ body {
     height: 100%; 
     border: none; 
 }
+
+.expired-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 </style>
 </head>
 
@@ -58,20 +69,25 @@ body {
 </div>
 
 <script>
-const _0xS1 = "SHR0cHM6Ly9qaW9nby5wYWdlcy5kZXYvP2lkPTE5ODQ=";
+/**
+ * Encoded Source URL: https://allrounderid2.pages.dev/jjiotv/player?id=1985
+ * Base64: aHR0cHM6Ly9hbGxyb3VuZGVyaWQyLnBhZ2VzLmRldi9qamlvdHYvcGxheWVyP2lkPTE5ODU=
+ */
+const _0xV1 = "aHR0cHM6Ly9hbGxyb3VuZGVyaWQyLnBhZ2VzLmRldi9qamlvdHYvcGxheWVyP2lkPTE5ODU=";
 
 window.onload = function() {
     const now = new Date();
-    const expiry = new Date(2026, 2, 9, 6, 0, 0);
+    const expiry = new Date(2026, 2, 9, 23, 59, 59);
+    const viewport = document.getElementById('viewport');
 
-    if (now >= expiry) {
-        document.getElementById('viewport').innerHTML = "<div style='text-align:center;padding-top:20px;'>Stream Link Expired</div>";
+    if (now > expiry) {
+        viewport.innerHTML = "<div class='expired-msg'>Stream Link Expired</div>";
         return;
     }
 
-    const src = atob(_0xS1);
-    const viewport = document.getElementById('viewport');
+    const src = atob(_0xV1);
     
+    // ANTI-AD PROTECTION: Restricted sandbox to block popups/redirects
     viewport.innerHTML = `
         <iframe 
             id="stream-player"
@@ -84,8 +100,13 @@ window.onload = function() {
     `;
 };
 
+/* Basic DevTools Protection */
 document.onkeydown = (e) => {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
+    if(e.keyCode == 123 || 
+      (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
+      (e.ctrlKey && e.keyCode == 85)) {
+        return false;
+    }
 };
 </script>
 
