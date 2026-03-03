@@ -70,24 +70,30 @@ body {
 
 <script>
 /**
- * Encoded Source URL: https://allrounderid2.pages.dev/jjiotv/player?id=1985
- * Base64: aHR0cHM6Ly9hbGxyb3VuZGVyaWQyLnBhZ2VzLmRldi9qamlvdHYvcGxheWVyP2lkPTE5ODU=
+ * Encoded Source URL: https://jiogo.pages.dev/?id=1984
+ * Base64: aHR0cHM6Ly9qaW9nby5wYWdlcy5kZXYvP2lkPTE5ODQ=
  */
-const _0xV1 = "aHR0cHM6Ly9hbGxyb3VuZGVyaWQyLnBhZ2VzLmRldi9qamlvdHYvcGxheWVyP2lkPTE5ODU=";
+const _0xV1 = "aHR0cHM6Ly9qaW9nby5wYWdlcy5kZXYvP2lkPTE5ODQ=";
 
 window.onload = function() {
     const now = new Date();
+    
+    // Expiry Date: March 9, 2026
     const expiry = new Date(2026, 2, 9, 23, 59, 59);
+
     const viewport = document.getElementById('viewport');
 
+    // Check if the link has expired
     if (now > expiry) {
         viewport.innerHTML = "<div class='expired-msg'>Stream Link Expired</div>";
         return;
     }
 
+    // Decode the Base64 URL
     const src = atob(_0xV1);
     
-    // ANTI-AD PROTECTION: Restricted sandbox to block popups/redirects
+    // ANTI-AD PROTECTION: allow-scripts and allow-same-origin are usually enough for the player
+    // Excluding "allow-popups" and "allow-top-navigation" prevents most ads.
     viewport.innerHTML = `
         <iframe 
             id="stream-player"
