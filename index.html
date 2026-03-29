@@ -1,77 +1,105 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Live Stream</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CricxCrate | Star Sports 1HD Hindi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root { --p: #00ff6a; --b: #0a0a0a; }
-*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-
-body { 
-    margin: 0; 
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-    background: var(--b); 
-    color: #fff; 
-    overflow: hidden; 
+:root {
+  --bg-dark: #0A0F14; 
+  --card-bg: #131B24;
+  --text-dim: #94A3B8;
+  --seashell: #F0F0F0;
+  --border: rgba(255, 255, 255, 0.06);
 }
 
-.main-ui { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-    height: 100vh; 
-    max-width: 900px; 
-    margin: 0 auto; 
-    padding: 15px; 
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--seashell);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers the player vertically */
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.video-container { 
-    width: 100%; 
-    position: relative; 
-    padding-top: 56.25%; 
-    background: #000; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    border: 1px solid rgba(255,255,255,0.1); 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  position: relative;
 }
 
 #stream-player { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    border: none; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  border: none; 
 }
+
+.channel-info {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+}
+
+.channel-logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #1a1a1a;
+  border: 1px solid var(--border);
+}
+
+h3 { margin: 0; font-size: 16px; font-weight: 700; }
+p { margin: 4px 0 0; font-size: 12px; color: #96AAAA; }
+
 </style>
 </head>
-
 <body>
 
-<div class="main-ui">
-  <div class="video-container" id="viewport">
+<div class="app-container">
+  <div class="video-frame">
       <iframe 
           id="stream-player"
-          src="https://allrounder-live.pages.dev/star/star-1-hindi" 
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
+          src="https://superkingsarmy-jiotvplayer.vercel.app/?id=1108" 
+          allow="autoplay; encrypted-media; fullscreen" 
           allowfullscreen="true">
       </iframe>
   </div>
-</div>
 
-<script>
-/* We have removed the 'sandbox' and 'ad-shield' layers. 
-   These are the main causes of the black screen issue.
-*/
-document.onkeydown = (e) => {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
-        return false;
-    }
-};
-</script>
+  <div class="channel-info">
+    <img src="https://img.media.jio.com/tvpimages/5/6/301982_1749665314605_l_medium.jpg" alt="Logo" class="channel-logo-img">
+    <div>
+      <h3>Star Sports 1HD Hindi</h3>
+      <p>Sports • Live Stream</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
